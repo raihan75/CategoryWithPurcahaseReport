@@ -1,0 +1,98 @@
+﻿@model CompilerError.Models.PurchaseReportViewModel
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    
+}
+
+
+@*<!DOCTYPE html>
+    <html>
+    <head>
+        <meta name="viewport" content="width=device-width" />*@
+@section MyStyle
+{
+    <style>
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        td, th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #dddddd;
+        }
+    </style>
+}
+
+@**  </head>
+    <body>*@
+
+<h2>Purchase Report </h2>
+<div>
+    <form method='post' style='text-align:center'>
+        <table>
+            @*<tr>
+            <td>@Html.LabelFor(c => c.Code)</td>
+            <th>@Html.TextBoxFor(c => c.Code, Model.Code)</th>
+            <td>@Html.ValidationMessageFor(c => c.Code)</td>
+            <td><input type='submit' name='Add' value="Save" style='color:green'></td>
+        </tr>*@
+            <tr>
+                <td>Start Date</td>
+                <td><input type='text' name='StartDate' value=""></td>
+                <td>End Date</td>
+                <td><input type='text' name='EndDate' value=""></td>
+                <td><input type='submit' name='submit' value="Search" style='color:green'></td>
+            </tr>
+            
+        </table>
+
+
+    </form>
+</div>
+
+<div style="height:100px; width:100px"></div>
+<div>
+    <table>
+        <tr>
+            <th>Sl</th>
+            <th>Code</th>
+            <th>Name</th>
+            <th>Category</th>
+            <th>Available Qty</th>
+            <th>CP(TK)</th>
+            <th>MRP(TK)</th>
+            <th>Profit (TK)</th>
+        </tr>
+        @{ int i = 1;}
+        @foreach (var purchase in Model.Purchases)
+        {
+            <tr>
+                <td>@(i++)</td>
+                <td>@purchase.Code</td>
+                <td>@purchase.Name</td>
+                <td>@purchase.Category</td>
+                <td>@purchase.AvailableQuantity</td>
+                <td>@purchase.CP</td>
+                <td>@purchase.MRP</td>
+                <td>
+                    
+                        @(purchase.MRP-purchase.CP)
+                    
+                </td>
+                
+            </tr>
+        }
+
+    </table>
+</div>
+@* </body>
+    </html>*@
+
